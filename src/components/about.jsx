@@ -7,6 +7,7 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
+    padding: "0",
     transform: "translate(-50%, -50%)"
   }
 };
@@ -24,35 +25,43 @@ class About extends Component {
         style={customStyles}
         contentLabel="Puzzle Demo About"
       >
-        <div id="aboutDiv">
-          <h1>About</h1>A "bout" can have the following meanings:
-          <ul>
-            <li>
-              a short period of intense activity of a specified kind.
-              <br />
-              synonyms: attack, fit, spasm, paroxysm, convulsion, eruption,
-              outburst
-            </li>
-            <li>
-              a curve in the side of a violin, guitar, or other musical
-              instrument.
-            </li>
-          </ul>
-          <img
-            style={{
-              height: "45px"
-            }}
-            src="/assets/icons/Smiling_Face_Emoji.png"
-            alt=":)"
-          />
-          <div className="container" align="right">
-            <button
-              key="aboutCloseBtn"
-              className="btn btn-primary"
-              onClick={this.props.onCloseModal}
-            >
-              Close
-            </button>
+        <div id="aboutDiv" className="modalDialogContainer">
+          <nav
+            className="navbar navbar-expand-sm"
+            style={{ backgroundColor: "buttonface" }}
+          >
+            About
+          </nav>
+          <div className="dialogContent">
+            <h4>A "bout" can have the following meanings:</h4>
+            <ul>
+              <li>
+                a short period of intense activity of a specified kind.
+                <br />
+                synonyms: attack, fit, spasm, paroxysm, convulsion, eruption,
+                outburst
+              </li>
+              <li>
+                a curve in the side of a violin, guitar, or other musical
+                instrument.
+              </li>
+            </ul>
+            <img
+              style={{
+                height: "45px"
+              }}
+              src="/assets/icons/Smiling_Face_Emoji.png"
+              alt=":)"
+            />
+            <div className="container" align="right">
+              <button
+                key="aboutCloseBtn"
+                className="btn btn-primary dialog-btn"
+                onClick={this.props.onCloseModal}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </Modal>

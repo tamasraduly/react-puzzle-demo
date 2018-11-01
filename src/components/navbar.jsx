@@ -86,9 +86,6 @@ class Navbar extends Component {
                 Help
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem href="#" onClick={() => this.props.onAbout()}>
-                  About
-                </DropdownItem>
                 <DropdownItem href="#" onClick={() => this.props.onManual()}>
                   Manual
                 </DropdownItem>
@@ -97,6 +94,9 @@ class Navbar extends Component {
                   onClick={() => this.props.onTechDetails()}
                 >
                   Technical Details
+                </DropdownItem>
+                <DropdownItem href="#" onClick={() => this.props.onAbout()}>
+                  About
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>

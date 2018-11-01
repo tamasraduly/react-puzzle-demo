@@ -11,6 +11,7 @@ import PuzzleDetails from "./components/puzzledetails";
 import Manual from "./components/manual";
 import About from "./components/about";
 import TechDetails from "./components/techdetails";
+import StatusModal from "./components/statusmodal";
 
 // This map helps resolve the coordinate delta for the emtpy piece based on a step
 const stepToEmptyPieceCoordDeltaMap = {
@@ -144,6 +145,7 @@ class App extends Component {
 
     const stateCopy = { ...this.state };
     stateCopy.callInProgress = true;
+    stateCopy.activeModal = "status";
     this.resetSolutionFields(stateCopy);
     this.setState(stateCopy);
     try {
@@ -281,7 +283,14 @@ class App extends Component {
   render() {
     console.log("App render ", this.state.puzzleGridProps.size);
     return (
-      <div id="puzzleAppDiv">
+      <div id="puzzleAppDiv" align="center">
+        <StatusModal
+          modalIsOpen={this.state.activeModal === "status"}
+          onCloseModal={this.handleCloseModal}
+          message={this.state.solutionMessage}
+          showError={this.state.didSolutionCallFail}
+          callInProgress={this.state.callInProgress}
+        />
         <Manual
           modalIsOpen={this.state.activeModal === "manual"}
           onCloseModal={this.handleCloseModal}
@@ -316,10 +325,7 @@ class App extends Component {
         <SolutionContainer
           steps={this.state.solutionSteps}
           nextStepIndex={this.state.nextStepIndex}
-          message={this.state.solutionMessage}
-          showError={this.state.didSolutionCallFail}
           onExecuteNext={this.handleExecuteNext}
-          callInProgress={this.state.callInProgress}
         />
       </div>
     );
