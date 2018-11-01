@@ -11,7 +11,7 @@ class StepCounter extends Component {
           title="Click to reset!"
           onClick={this.props.onClick}
         >
-          {this.props.steps}
+          {this.props.stepCount}
         </span>
       </React.Fragment>
     );

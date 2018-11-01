@@ -4,11 +4,12 @@ class PuzzleGridProps {
   constructor(props) {
     //console.log("PuzzleGridProps", props);
     this.size = props.size;
-    this.solved = true;
 
     const rows = props.size.rows;
     const cols = props.size.cols;
     this.handleMoveEmptyPiece = props.handleMoveEmptyPiece;
+    this.suggestedNumToMove = -1;
+    this.manhattanDistanceSum = 0;
     this.piecePropsArr = new Array(rows);
     for (var i = 0; i < rows; i++) {
       this.piecePropsArr[i] = new Array(cols);
@@ -18,6 +19,20 @@ class PuzzleGridProps {
           x: i,
           y: j
         });
+      }
+    }
+  }
+
+  refreshManhattanDistanceSum() {
+    this.manhattanDistanceSum = 0;
+    for (let i = 0; i < this.size.rows; i++) {
+      for (let j = 0; j < this.size.cols; j++) {
+        const num = this.piecePropsArr[i][j].num;
+        if (num !== 0) {
+          const x = Math.trunc((num - 1) / this.size.rows);
+          const y = (num - 1) % this.size.cols;
+          this.manhattanDistanceSum += Math.abs(x - i) + Math.abs(y - j);
+        }
       }
     }
   }
@@ -55,6 +70,7 @@ class PuzzleGridProps {
     this.piecePropsArr[p2.x][p2.y] = p1;
     p2.x = p1x_old;
     p2.y = p1y_old;
+    this.refreshManhattanDistanceSum();
   };
 
   moveRandomPiece = () => {
@@ -77,7 +93,7 @@ class PuzzleGridProps {
   };
 
   getNeighbours = piece => {
-    const result = new Array();
+    const result = [];
     if (piece.x < this.size.rows - 1) {
       result.push(this.piecePropsArr[piece.x + 1][piece.y]);
     }

@@ -31,3 +31,14 @@ hr {
   height: 100px;
   width: 110px;
 }
+
+.step-img {
+  height: 30px;
+}
+
+.step-img-active {
+  height: 45px;
+  padding: 1px;
+  border: 1px solid #021a40;
+  background-color: #ff0;
+}

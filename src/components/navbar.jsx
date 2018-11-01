@@ -12,10 +12,20 @@ class Navbar extends Component {
           className="navbar navbar-expand-sm"
           style={{ backgroundColor: "buttonface" }}
         >
-          <span className="navbar-brand">Puzzle Demo</span>
+          <span
+            className="navbar-brand"
+            datatoggle="tooltip"
+            title="by Tamas Raduly"
+          >
+            Puzzle Demo
+          </span>
           <span className="navbar-text" style={{ marginLeft: 15 }}>
             <Dropdown>
-              <DropdownToggle caret color="default">
+              <DropdownToggle
+                caret
+                color="default"
+                disabled={this.props.callInProgress}
+              >
                 Size
               </DropdownToggle>
               <DropdownMenu>
@@ -42,15 +52,51 @@ class Navbar extends Component {
           </span>
           <span className="navbar-text" style={{ marginLeft: 15 }}>
             <Dropdown>
-              <DropdownToggle caret color="default">
+              <DropdownToggle
+                caret
+                color="default"
+                disabled={this.props.callInProgress}
+              >
                 Tools
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={() => this.props.onSolve()} href="#">
-                  Solve
+                <DropdownItem href="#" onClick={() => this.props.onReset()}>
+                  Reset
                 </DropdownItem>
                 <DropdownItem href="#" onClick={() => this.props.onShuffle()}>
                   Shuffle
+                </DropdownItem>
+                <DropdownItem
+                  disabled={this.props.solved}
+                  onClick={() => this.props.onGetSolution()}
+                  href="#"
+                >
+                  Get Solution
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </span>
+          <span className="navbar-text" style={{ marginLeft: 15 }}>
+            <Dropdown>
+              <DropdownToggle
+                caret
+                color="default"
+                disabled={this.props.callInProgress}
+              >
+                Help
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem href="#" onClick={() => this.props.onAbout()}>
+                  About
+                </DropdownItem>
+                <DropdownItem href="#" onClick={() => this.props.onManual()}>
+                  Manual
+                </DropdownItem>
+                <DropdownItem
+                  href="#"
+                  onClick={() => this.props.onTechDetails()}
+                >
+                  Technical Details
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -58,7 +104,7 @@ class Navbar extends Component {
           <span className="navbar-text" style={{ marginLeft: 15 }}>
             Steps:{" "}
             <StepCounter
-              steps={this.props.steps}
+              stepCount={this.props.stepCount}
               onClick={this.props.onStepCounterClick}
             />
           </span>

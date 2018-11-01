@@ -56,15 +56,18 @@ class PuzzleGrid extends Component {
         >
           {pgProps.piecePropsArr.map(row => (
             <div
+              align="center"
               key={"row" + row[0].num}
-              style={{ outlineWidth: 0, margin: "auto", width: "80%" }}
+              style={{ outlineWidth: 0 }}
             >
               {row.map(piece => (
                 <PuzzlePiece
                   key={"puzzlePiece" + piece.num}
                   piece={piece}
                   solved={solved}
+                  isSuggested={pgProps.suggestedNumToMove === piece.num}
                   onPieceClicked={this.props.onPieceClicked}
+                  callInProgress={this.props.callInProgress}
                 />
               ))}
             </div>

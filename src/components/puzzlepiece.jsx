@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 
 class PuzzlePiece extends Component {
-  state = {};
-
-  constructor() {
-    super();
-  }
-
   getBadgeClasses = props => {
     let badgeClasses = "badge m-1 puzzle-piece badge-";
     badgeClasses += props.piece.empty
@@ -21,14 +15,19 @@ class PuzzlePiece extends Component {
     if (props.piece.empty) {
       return { visibility: "hidden" };
     }
-
+    if (props.callInProgress) {
+      return { color: "grey" };
+    }
+    if (props.isSuggested) {
+      return { color: "green" };
+    }
     return props.piece.isItInSolvedPosition()
       ? { color: "white" }
       : { color: "red" };
   };
 
   render() {
-    console.log("Piece rendered", this.props.solved);
+    //console.log("Piece rendered", this.props.solved);
 
     return (
       <React.Fragment>
